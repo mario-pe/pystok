@@ -203,16 +203,30 @@ for city_dict in [
 print(cities)
 # {'New York City': 'US', 'Los Angeles': 'US', 'London': 'UK', 'Birmingham': 'UK', 'Tokyo': 'JP'}
 
-#### 11
 cities = cities_us | cities_uk | cities_jp
 
 print(cities)
 # {'New York City': 'US', 'Los Angeles': 'US', 'London': 'UK', 'Birmingham': 'UK', 'Tokyo': 'JP'}
 
-#### 12
+#### 11
 cities = {**cities_us, **cities_uk, **cities_jp}
 print({**cities_us, **cities_uk, **cities_jp})
 # {'New York City': 'US', 'Los Angeles': 'US', 'London': 'UK', 'Birmingham': 'UK', 'Tokyo': 'JP'}
+
+
+#### 12  contex manager with requests
+
+s = requests.Session()
+
+s.get('https://httpbin.org/cookies/set/sessioncookie/123456789')
+r = s.get('https://httpbin.org/cookies')
+print(r.text)
+# '{"cookies": {"sessioncookie": "123456789"}}'
+
+import requests
+
+with requests.Session() as session:
+    session.request(method="get", url='https://httpbin.org/cookies')
 
 
 #### 13   Itertools
